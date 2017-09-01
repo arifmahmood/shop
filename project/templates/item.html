@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<style>
+.button1 {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: #f4511e;
+  background: linear-gradient(#3399ff, #79bcFF);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  height: 35px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button1 span {
+  cursor:pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: black;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover{
+background: linear-gradient(#79bcFF, #3399ff);
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.button1:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.button1 {
+	display: block 
+}
+.button {
+  display: inline-block;
+  border-radius: 15px;
+  background-color: #f4511e;
+  background: linear-gradient(#FFCC99, yellow);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  width: 125px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor:pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: black;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover{
+background: linear-gradient(yellow, #FFCC99);
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.auto-style1 {
+	text-align: center;
+	font-size: x-large;
+	color: #FFFFFF;
+	padding: 5px;
+}
+
+.select{
+	height: 40px;
+	width: 175px;
+	border-radius:2px;
+	margin-left: 10px;float:left;
+	background:#E8E8E1;
+}
+</style>
+</head>
+
+<body style="background-color: #E4E4E0">
+
+<form action="" method="post" style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; width: 580px; height: 40px; top: 30px; position: absolute; background-color: #666699;">
+
+	<div class="auto-style1">
+		<strong>Item</strong></div>
+</form>
+
+<form action="" method="post" style= "border-radius: 3px; width: 580px; height: 227px; top: 100px; position: absolute; background-color: #FFFFFF; left: 10px;">
+		{% csrf_token %}
+	
+		
+		<div id="layer2" style="position: absolute; width: 162px; height: 49px; z-index: 2; left: 9px; top: 5px; right: 409px;">
+			<button class="button" type="submit" formaction="/home/" ><span>Home</span>
+			</button>
+		</div>
+		<div id="layer1" style="position: absolute; width: 162px; height: 49px; z-index: 1; left: 415px; top: 5px">
+			<button class="button"  type="submit" formaction="/logout/"><span>Log out</span>
+			</button>
+		
+		</div>
+		
+		<div id="layer1" style="position: absolute; width: 162px; height: 149px; z-index: 1; left: 9px; top: 67px" color="ff00ff">
+			<input name="btnUCont"  type="submit" formaction="/item/add/"  value="Add an Item" class="button1"/>
+			<input name="btnUCont"  type="submit" formaction="/item/delete/" value="Delete an Item" class="button1"/>
+
+			<input name="btnUCont"   type="submit" formaction="/item/edit/" value="Edit an Item" class="button1"/>
+
+		
+		</div>
+		
+</form>
+
+</body>
+
+</html>

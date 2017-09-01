@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<style>
+
+label{
+display:inline-block;
+width:80px;
+text-align:left;
+}
+
+input{
+
+}
+
+fieldset{
+border:none;
+margin:0px auto;
+}
+
+.button1 {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: #f4511e;
+  background: linear-gradient(#3399ff, #79bcFF);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  height: 35px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button1 span {
+  cursor:pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: black;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover{
+background: linear-gradient(#79bcFF, #3399ff);
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.button1:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.button1 {
+	display: block 
+}
+.button {
+  display: inline-block;
+  border-radius: 15px;
+  background-color: #f4511e;
+  background: linear-gradient(#FFCC99, yellow);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  width: 125px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor:pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: black;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover{
+background: linear-gradient(yellow, #FFCC99);
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.auto-style1 {
+	text-align: center;
+	font-size: x-large;
+	color: #FFFFFF;
+	padding: 5px;
+}
+
+.select{
+	height: 40px;
+	width: 175px;
+	border-radius:2px;
+	margin-left: 10px; float:left;
+	background:#E8E8E1;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    top: 280px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.AlignToTextArea * {
+  vertical-align: middle;
+}
+
+.auto-style2 {
+	text-align: center;
+}
+.auto-style3 {
+	text-align: right;
+}
+
+</style>
+</head>
+
+<body style="background-color: #E4E4E0">
+
+<form action="" method="post" style="border-radius:3px; width: 1000px; height: 40px; top: 10px; position: absolute; background-color: #666699; left: 10px;">
+	<div class="auto-style1">
+		<strong>Add Sale Entry</strong></div>
+</form>
+
+<form action="/sale/sale_add/"  oninput="GrandTotal.value=parseInt(Total.value)-parseInt(Discount.value);Due.value= parseFloat(GrandTotal.value)-parseFloat(Paid.value);ItemTotal.value =( parseInt(unit.value)-parseInt(free.value))* parseInt(sale_rate.value);" method="POST" style="border-radius:3px; width: 1000px; height: 571px; top: 60px; position: absolute; background-color: #FFFFFF; left: 10px;">
+	{% csrf_token %}
+	<div id="layer2" style="position: absolute; width: 162px; height: 49px; z-index: 2; left: 9px; top: 5px; right: 409px;">
+		<button class="button" type="button"  onclick="location.href ='/home'" ><span>Home</span>
+		</button>
+	</div>
+	<div id="layer1" style="position: absolute; width: 143px; height: 49px; z-index: 1; left: 834px; top: 5px">
+		<button class="button" type="button"  onclick="location.href ='/logout'" ><span>Log out</span>
+		</button>
+	</div>
+
+	<!--<div id="layer1" style="position: absolute; width: 157px; height: 51px; z-index: 1; left: 433px; top: 5px; right: 410px;">
+        <input name="btnAdd" type="button" value="Add More Detail" class="button1" style="width: 150px"/>
+    </div>-->
+
+	<div id="layer1" style="position: absolute; width: 153px; height: 51px; z-index: 1; left: 265px; top: 5px">
+		<input name="New"  type="submit" value="Add New Memo" class="button1" style="width: 146px"/>
+		<!--<script >
+        function myFunction() {
+        document.getElementsByName("txtMemo").tags (input value: "This is a value");
+        }
+        </script>	-->
+	</div>
+
+
+
+
+	<fieldset style="border: thin solid #000000; height: 310px; width: 275px; position: absolute; left:20px; top: 62px;">
+		<legend><strong>Head Info</strong></legend>
+		{% if SELECTED %}
+		<label for="txtMemo">Memo No</label><label for="txtMemo" style="width: 10px"><strong>:</strong></label>
+		<input type="text" readonly value="{{SALE_OBJ.id}}" name="Memo_no" placeholder="Do not enter" style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+		<label for="Date" style="width: 80px">Date</label><label for="dtpSale" style="width: 10px"><strong>:</strong></label>
+		<input value="{{DATE}}" type="Date" name="Date"  placeholder="DD/MM/YYYY" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required/>
+		{% endif %}
+
+		<label for="slctParty" style="width:80px">Party</label><label for="slctParty"  style="width: 10px"><strong>:</strong></label>
+
+		<select name="Select_party"  style="width: 180px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+			{% if SALE_OBJ.id %}
+			<option>{{SALE_OBJ.party.id}}-{{SALE_OBJ.party.name}}</option>
+
+			{% else %}
+
+			<option>{{CUSTOMER.id}}-{{CUSTOMER.name}}</option>
+			{% endif %}
+			{% for i in party.all %}
+			<option >{{i.id}}-{{i.name}}-{{i.mobile_no}}</option>
+			{% endfor %}
+
+		</select>
+
+		{% if SELECTED %}
+		<p class="AlignToTextArea" style="margin-bottom: 0; margin-top: 0">
+			<label for="txtaddress" style="width: 80px">Address</label><label for="txtaddress" style="width: 10px"><strong>:</strong></label>
+			<textarea   rows="4" name="Address" readonly style= "width: 166px; border-radius: 3px; background:#E8E8E1;   padding: 5px; margin-bottom: 5px; display: inline-block">{% if SALE_OBJ.id %}{{SALE_OBJ.party.address}}{% else %}{{CUSTOMER.address}}{% endif %}</textarea>
+		</p>
+		<label for="slctSR">SR</label><label for="slctSR" style="width: 10px"><strong>:</strong></label><select name="SR" style= "width: 180px; height: 35px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right">
+
+		<option>{% if SALE_OBJ.id %}{{SALE_OBJ.party.sr.name}}{% else %}{{CUSTOMER.sr.name}}{% endif %}</option>
+
+		{% endif %}
+
+
+
+	</select>
+		{% if not SALE_OBJ.id %}
+		{% if SELECTED %}
+		<input name="Confirm_button" type="submit"  onclick="submit" class="button1" value="Confirm"   style="width: 77px"/>
+		{% else %}
+		<input name="Select_button" type="submit"  onclick="submit" class="button1" value="Select"   style="width: 77px"/>
+		{% endif %}
+		{% endif %}
+
+
+
+		<fieldset/>
+
+
+
+		{% if  SALE_OBJ.id %}
+
+
+		<fieldset style="border: thin solid #000000; height: 246px; width: 279px; position: absolute; left:327px; top: 0px;">
+			<legend><strong>Detail</strong></legend>
+			<label for="slctItem">Item/Size</label><label for="slctItem" style="width: 10px"><strong>:</strong></label>
+
+			{%  if not PRINT %}
+			<select name="Select_item" onchange="this.form.submit()" style="width: 180px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+
+			<option>{{CURRENT_ITEM.id}}-{{CURRENT_ITEM.name}}-{{CURRENT_ITEM.size}}</option>
+			{% for i in ALLITEM.all %}
+			<option>{{i.name}}-{{i.size}}</option>
+			{% endfor %}
+
+			</select>
+
+			{% endif %}
+			<!--<label for="slctSize">Size</label><label for="slctSize" style="width: 10px"><strong>:</strong></label><select name="slctSize" style="width: 180px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+				<option>5 Ltr</option>
+				<option>1 Ltr</option>
+			</select> -->
+			{% if CURRENT_ITEM %}
+			<label for="txtUnit">Unit</label><label for="txtUnit" style="width: 10px"><strong>:</strong></label>
+			<input type="number" name="Unit" id="unit" {% if CURRENT_ITEM %}required{% endif %} style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+			<label for="txtFree">Free</label><label for="txtFree" style="width: 10px"><strong>:</strong></label>
+			<input type="number" name="Free"  id="free" {% if CURRENT_ITEM %}required{% endif %} style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+			<label for="txtRate">Rate</label><label for="txtRate" style="width: 10px"><strong>:</strong></label>
+			<input type="number" value="{{CURRENT_ITEM.sale_rate}}" id="sale_rate"  readonly name="txtRate" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+			<label for="txtTotal">Item Total</label><label for="txtTotal"  style="width: 10px"><strong>:</strong></label>
+			<input type="number" name="ItemTotal" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right">
+
+			<input name="Add_item_button" type="submit"   class="button1" value="Add"   style="width: 77px"/>
+			{% endif %}
+		</fieldset>
+
+		<fieldset style="border: thin solid #000000; height: 206px; width: 279px; position: absolute; left:661px; top: 0px;">
+
+			<legend><strong>Aggregate</strong></legend>
+
+			<label for="txtTotal">Total</label><label for="txtTotal" style="width: 10px"><strong>:</strong></label><input type="number" value="{{TOTAL}}" id="Total" name="txtUnit" readonly style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+			<label for="txtDiscount">Discount</label><label for="txtDiscount" style="width: 10px"><strong>:</strong></label><input type="number" value="{{DISCOUNT}}" id="Discount" name="Discount" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+			<label for="txtGTotal">Grand Total</label><label for="txtGTotal" style="width: 10px"><strong>:</strong></label><input type="number" value="{{GRAND_TOTAL}}" name="GrandTotal" id="GrandTotal" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+			<label for="txtPaid">Paid</label><label for="txtPaid" style="width: 10px"><strong>:</strong></label><input type="number" value="{{PAID}}" name="Paid" id="Paid" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+			<label for="txtDue">Due</label><label for="txtDue" style="width: 10px"><strong>:</strong></label><input type="number" value="{{DUE}}" name="Due" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+
+		</fieldset>
+
+		<table style="position: absolute; height: 20px;  left: 9px; width:900px; overflow: auto; top: 320px; table-layout: fixed;" class="Table">
+			<tr>
+				<th class="auto-style2">Item Name</th>
+				<th class="auto-style2">Size</th>
+				<th class="auto-style2">Unit</th>
+				<th class="auto-style2">Free</th>
+				<th class="auto-style2">Rate</th>
+				<th class="auto-style2">Item Total</th>
+			</tr>
+		</table>
+
+		<div style="position: absolute;  left: 9px; width:917px; top: 350px; overflow:scroll; height: 150px;">
+			<table style="; overflow: auto; table-layout: fixed;" class="Table">
+				{% for i in SALE_OBJ.sale_item.all %}
+				<tr>
+					<td>{{i.item.name}}</td>
+					<td>{{i.item.size}}</td>
+					<td class="auto-style3">{{i.quantity}}</td>
+					<td class="auto-style3">{{i.free}}</td>
+					<td class="auto-style3">{{i.item.sale_rate}}</td>
+					<td class="auto-style3">{{i.item_total}}</td>
+				</tr>
+
+				{% endfor %}
+
+			</table>
+		</div>
+
+		{% endif %}
+
+		{% if  not ITEM_SELECTED %}
+		{% if  SALE_OBJ.id or  PRINT %}
+		<fieldset style="border: thin solid #000000; height: 57px; width: 279px; position: absolute; left:661px; top: 230px;">
+			<legend><strong>Save or Print Memo</strong></legend>
+
+
+			<!--<select name="slctMemo" style="width: 139px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+				<option value="">Select Memo No</option>
+				<option>376</option>
+				<option>375</option>
+				<option>374</option>
+			</select> -->
+
+		</fieldset>
+
+		{% if  SALE_OBJ.id and not PRINT %}
+		<div id="layer1" style="position: absolute; width: 120px; height: 51px; z-index: 1; left: 750px; top: 246px; right: -656px;">
+
+			<input name="Save_memo_button" type="submit" value="Save Memo" class="button1" style=style="width: 115px"/>
+		</div>
+		{% endif %}
+
+		{% if  PRINT %}
+		<div id="layer1" style="position: absolute; width: 120px; height: 51px; z-index: 1; left: 750px; top: 246px; right: -656px;">
+			<input name="Print_memo_button" type="button" value="Print Memo" class="button1" style="width: 115px"/>
+		</div>
+		{% endif %}
+
+		{% endif %}
+		{% endif %}
+
+
+
+</form>
+
+
+
+</body>
+
+</html>

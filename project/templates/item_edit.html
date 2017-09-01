@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<style>
+
+label{
+display:inline-block;
+width:80px;
+margin-right:20px;
+text-align:right;
+}
+
+input{
+
+}
+
+fieldset{
+border:none;
+margin:0px auto;
+}
+
+.button1 {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: #f4511e;
+  background: linear-gradient(#3399ff, #79bcFF);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  height: 35px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button1 span {
+  cursor:pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: black;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover{
+background: linear-gradient(#79bcFF, #3399ff);
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.button1:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.button1 {
+	display: block 
+}
+.button {
+  display: inline-block;
+  border-radius: 15px;
+  background-color: #f4511e;
+  background: linear-gradient(#FFCC99, yellow);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  width: 125px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor:pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: black;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover{
+background: linear-gradient(yellow, #FFCC99);
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.auto-style1 {
+	text-align: center;
+	font-size: x-large;
+	color: #FFFFFF;
+	padding: 5px;
+}
+
+.select{
+	height: 40px;
+	width: 175px;
+	border-radius:2px;
+	margin-left: 10px; float:left;
+	background:#E8E8E1;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    border-collapse: collapse 
+    text-align: left;
+    padding: 8px;
+}
+
+table th {
+	text-align:center 
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.verticalLine{
+	border-left: thick solid #000000
+}
+
+.auto-style2 {
+	display: block;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 18px;
+	height: 35px;
+	width: 150px;
+	transition-property: all;
+	transition-duration: 0.5s;
+	cursor: pointer;
+	border-style: none;
+	border-color: inherit;
+	border-width: medium;
+	margin: 10px;
+	border-radius: 3px;
+	background-color: #f4511e;
+}
+
+</style>
+</head>
+
+<body style="background-color: #E4E4E0">
+
+<form action="" method="post" style="border-radius:3px; width: 827px; height: 40px; top: 10px; position: absolute; background-color: #666699; left: 10px; bottom: 235px;">
+	<div class="auto-style1">
+		<strong>Item</strong></div>
+</form>
+
+<form action="/item/edit/" method="post" style= "border-radius: 3px; width: 500px; height: 501px; top: 60px; position: absolute; background-color: #FFFFFF; left: 10px;">{% csrf_token %}
+
+
+	<div id="layer2" style="position: absolute; width: 162px; height: 49px; z-index: 2; left: 9px; top: 5px; right: 409px;">
+		<button class="button" type="button"  onclick="location.href ='/home'" ><span>Home</span>
+		</button>
+	</div>
+	<div id="layer1" style="position: absolute; width: 143px; height: 49px; z-index: 1; left: 669px; top: 5px">
+		<button class="button" type="button"  onclick="location.href ='/logout'" ><span>Log out</span>
+		</button>
+
+	</div>
+	<!--
+    <a style="position: absolute; left: 47px; top: 348px; height: 32px; width: 100px; font-family: Calibri; right: 660px; padding-top: 8px;" class="button1">&laquo; Previous</a>
+    <a style="position: absolute; left: 158px; top: 348px; height: 32px; width: 100px; font-family: Calibri; padding-top: 8px;" class="button1" >Next &raquo;</a>
+    -->
+
+
+	<div id="layer1" style="position: absolute; width: 152px; height: 51px; left: 83px; top: 340px">
+
+		{%if not EDIT %}
+		<input name="Edit_button" type="submit" value="Edit" class="button1"/>
+		{% endif %}
+
+		{%if EDIT %}
+		<input name="Save_button" type="submit" value="Save" class="button1"/>
+		{% endif %}
+
+
+
+	</div>
+
+	<fieldset style="border: thin solid #000000; height: 240px; width: 276px; position: absolute; left:20px; top: 62px;">
+
+		<legend><strong>Input Field</strong></legend>
+
+		{%if not EDIT %}
+		<label for="txtId" style="width:50px">Id:</label>
+		<select name="Select_id" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom:2px; margin-bottom: 5px">
+			<option></option>
+			{% for i in Item.all %}
+			<option>{{i.id}}</option>
+			{% endfor %}
+
+
+		</select>
+		{% endif %}
+		<br>
+		{% if SUCCESS_EDIT %}
+		Edited successfully.
+		{% endif %}
+
+		{%if EDIT %}
+
+		<label for="txtId">Id:</label><input type="text" value="{{obj.id}}" name="Id_value" readonly style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right">
+
+		<label for="txtName">Name:</label><input type="text" value="{{obj.name}}" name="Name" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required>
+		<label for="txtSize">Size:</label><input type="text" value="{{obj.size}}"  name="Size" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required>
+		<label for="txtRateStock">Stock Rate:</label><input value="{{obj.stock_rate}}" type="text" name="Stock_rate" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right" required>
+		<label for="txtRateSale">Sale Rate:</label><input type="text" value = "{{obj.sale_rate}}"  name="Sale_rate"style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right" required>
+		{% endif %}
+	</fieldset>
+</form>
+
+
+<form action="/item/edit/"   method="POST" style= "border-radius: 3px; width: 500px; height: 501px; top: 60px; position: absolute; background-color: #FFFFFF; left: 400px;">
+	{% csrf_token %}
+
+	<fieldset style="border: thin solid #000000; height: 160px; width: 276px; position: absolute; left:20px; top: 62px;">
+		<legend><strong >Search Field</strong></legend>
+		<label for="searchType" style="width:50px">Attribute:</label><select name="stype" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom:2px; margin-bottom: 5px">
+		<option>ID</option>
+		<option>Name</option>
+		<option>Size</option>
+		<option>Show All</option>
+
+	</select>
+		<label for="value">Value:</label><input type="text" name="value" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+
+
+
+
+		<!--
+		<label for="slctName" style="width:50px">Name:</label><select name="slctName" style="width: 185px; height: 30px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+				<option></option>
+			</select>
+		<label for="slctSize" style="width:50px">Size:</label><select name="slctName" style="width: 181px; height: 30px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+				<option></option>
+			</select>
+		 	-->
+		<div id="layer4" style="width: 162px; height: 51px; margin-left:55px; z-index: 1">
+			<input name="Search_button" type="submit"  value="Search" class="button1"/>
+
+		</div>
+
+	</fieldset>
+	<div id="table-wrapper" style="position: absolute; width: 422px; height: 232px; z-index: 3; left:20px; top: 240px;">
+		<div id="table-scroll">
+			<table>
+				<tbody>
+				<tr>
+					<th>Id</span></th>
+					<th>Name</span></th>
+					<th>Size</th>
+					<th>Stock rate</th>
+					<th>Sale rate</th>
+				</tr>
+				</tbody>
+				<tbody>
+				{% for i in Item.all %}
+				<tr>
+					<td> {{i.id}}</td>
+					<td>{{i.name}}</td>
+					<td>{{i.size}}</td>
+					<td>{{i.stock_rate}}</td>
+					<td>{{i.sale_rate}}</td>
+				</tr>
+				{% endfor %}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="verticalLine" style=" position: absolute; height: 435px; width: 6px; left: 0px; top: 62px;">
+
+	</div>
+
+</form>
+
+</body>
+
+</html>
