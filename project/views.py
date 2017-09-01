@@ -611,7 +611,7 @@ def sale_add_page_load(request):
         obj = Memo(party=customer, date=date)
         obj.save()
 
-        dt = obj.date.strftime("%d/%m/%Y")
+        dt = request.POST.get('Date')
 
 
         all_item = Item.objects.all
