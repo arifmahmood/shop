@@ -54,6 +54,7 @@ class SaleItem(models.Model):
 
     item = models.ForeignKey(Item)
 
+
     def item_total(self):
         return (self.quantity - self.free) * self.item.sale_rate
 
@@ -76,6 +77,7 @@ class PurchaseItem(models.Model):
 
     item = models.ForeignKey(Item)
 
+
     def item_total(self):
         return (self.quantity - self.free) * self.item.sale_rate
 
@@ -88,8 +90,13 @@ class PurchaseMemo(models.Model):
     paid = models.DecimalField(max_digits=10, decimal_places=2,default=0, blank=True, null=True)
 
 
+
+
     def get_total(self):
         return sum(i.item_total() for i in self.purchase_item.all())
+
+
+
 
 
 

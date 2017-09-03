@@ -1605,18 +1605,79 @@ def report_item_list(request):
     return render_to_response('report_item_list.html', c)
 
 
-def report_item_stock_ledger(request):
+def report_stock_ledger(request):
+
+
     all_item = Item.objects.all()
 
+    col, row = 12, 0;
+    row = int(Item.objects.count())
+    matrix = [[0 for x in range(col)] for y in range(row+1)]
+
+    matrix[0][0] ='Name'
+    matrix[0][1] = 'Size'
+    matrix[0][2] = 'Starting'
+    matrix[0][3] = 'Purchased'
+    matrix[0][4] = 'Sales Return'
+    matrix[0][5] = 'Free'
+    matrix[0][6] = '3+4+5'
+    matrix[0][7] = 'Sold'
+    matrix[0][8] = 'Purchase return'
+    matrix[0][9] = 'Free'
+    matrix[0][10]= '7+8+9'
+    matrix[0][11]= '2+6-10'
+
+
+    counter = 0
 
     for i in all_item:
+        counter=counter+1
+        #name
+        matrix[counter][0]= i.name
+        #size
+        matrix[counter][1]=i.size
+        #starting
+        matrix[counter][2] = 0
+
+
         #----- purchased  quantity calculation for each object
         purchased = PurchaseItem.objects.filter(item=i).aggregate(x=Coalesce(Sum('quantity'),0)).get('x')
+        matrix[counter][3]=int(purchased)
+
+        #sales return ------------------------------- not done
+        matrix[counter][4] =0
+
+        #got free
         got_free =  PurchaseItem.objects.filter(item=i).aggregate(x=Coalesce(Sum('free'),0)).get('x')
+        matrix[counter][5]=int(got_free)
+
+        # summation of 2,3,4
+
+        matrix[counter][6] =matrix[counter][2]+matrix[counter][3]+matrix[counter][4]
 
         # ----- Sold quantity calculation for each object
         sold = SaleItem.objects.filter(item=i).aggregate(x=Coalesce(Sum('quantity'),0)).get('x')
+
+        matrix[counter][7] = int(sold)
+
+
+        #purchase return
+        matrix[counter][8] =0
+
+
+        # given free
         given_free = SaleItem.objects.filter(item=i).aggregate(x=Coalesce(Sum('free'),0)).get('x')
+        matrix[counter][9] = int(given_free)
+
+
+        # summation   of 7,8,9
+
+        matrix[counter][10] = matrix[counter][7]+matrix[counter][8]+matrix[counter][9]
+
+        # total
+        matrix[counter][11] = matrix[counter][6] -matrix[counter][10]
+
+
 
         i.item_available= int(purchased)-int(sold)
         i.item_free= int(got_free)-int(given_free)
@@ -1629,7 +1690,10 @@ def report_item_stock_ledger(request):
         print(i.item_free)
 
 
-    return HttpResponseRedirect('/home')
+
+    c = {'MATRIX': matrix, }
+    c.update(csrf(request))
+    return render_to_response('report_item_list.html', c)
 
 
 
