@@ -54,6 +54,13 @@ urlpatterns = [
 
 
 
+    #------------------- report ----------------------
+    url(r'^report_item_list/$', views.report_item_list,name='report_item_list'),
+
+
+
+
+
 
 
 

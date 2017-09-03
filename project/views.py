@@ -1,8 +1,11 @@
+from django.db.models.functions import Coalesce
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.http import HttpResponse
 from django.template.context_processors import csrf
 from django.contrib import auth
 from .models import Item, Sr, Customer, Supplier, Memo, SaleItem, PurchaseItem , PurchaseMemo
+
+from django.db.models import Sum, Avg,Count
 
 from django.contrib.auth import logout
 from datetime import datetime
@@ -1567,6 +1570,66 @@ def purchase_edit_delete(request):
     c = {'ALL_SALE_OBJ': all_sale_obj}
     c.update(csrf(request))
     return render_to_response('purchase_edit_delete.html', c)
+
+
+
+#----------------------------report------------------------------
+
+def report_item_list(request):
+    col, row = 3, 0;
+    row= int(Item.objects.count())
+    Matrix = [[0 for x in range(col)] for y in range(row)]
+
+
+
+    all_item = Item.objects.all()
+
+    counter=0
+    for i in all_item:
+        Matrix[counter][0]=i.id
+        Matrix[counter][1]=i.name
+        Matrix[counter][2]=i.size
+        counter=counter+1
+
+
+
+
+    for x in range(0,row-1):
+
+        print(Matrix[x])
+
+    ran= row-1
+
+    c={'MATRIX':Matrix, 'RANGE':ran,}
+    c.update(csrf(request))
+    return render_to_response('report_item_list.html', c)
+
+
+def report_item_stock_ledger(request):
+    all_item = Item.objects.all()
+
+
+    for i in all_item:
+        #----- purchased  quantity calculation for each object
+        purchased = PurchaseItem.objects.filter(item=i).aggregate(x=Coalesce(Sum('quantity'),0)).get('x')
+        got_free =  PurchaseItem.objects.filter(item=i).aggregate(x=Coalesce(Sum('free'),0)).get('x')
+
+        # ----- Sold quantity calculation for each object
+        sold = SaleItem.objects.filter(item=i).aggregate(x=Coalesce(Sum('quantity'),0)).get('x')
+        given_free = SaleItem.objects.filter(item=i).aggregate(x=Coalesce(Sum('free'),0)).get('x')
+
+        i.item_available= int(purchased)-int(sold)
+        i.item_free= int(got_free)-int(given_free)
+
+
+        print(i.id)
+        print('available')
+        print(i.item_available)
+        print('free')
+        print(i.item_free)
+
+
+    return HttpResponseRedirect('/home')
 
 
 

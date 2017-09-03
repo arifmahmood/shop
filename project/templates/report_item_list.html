@@ -1,0 +1,35 @@
+<html>
+
+
+<body>
+
+<form action="" method="post" style="border-radius:3px; width: 900px; height: 40px; top: 10px; position: absolute; background-color: #666699; left: 10px; bottom: 235px;">
+    {% csrf_token %}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <table  border="1">
+        {% for item in MATRIX %}
+        <tr>
+            {% for value in item %}
+            <td>
+                {{ value }}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</form>
+
+
+
+
+</body>
+
+</html>
