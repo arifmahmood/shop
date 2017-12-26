@@ -83,6 +83,7 @@ class PurchaseItem(models.Model):
 
 
 class PurchaseMemo(models.Model):
+    given_memo_no = models.IntegerField(default=0)
     date = models.DateField()
     party = models.ForeignKey(Supplier)
     purchase_item = models.ManyToManyField(PurchaseItem)

@@ -204,7 +204,12 @@ tr:nth-child(even) {
 		<label for="txtMemo">Memo No</label><label for="txtMemo" style="width: 10px"><strong>:</strong></label>
 		<input type="text" readonly value="{{SALE_OBJ.id}}" name="Memo_no" placeholder="Do not enter" style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
 		<label for="Date" style="width: 80px">Date</label><label for="dtpSale" style="width: 10px"><strong>:</strong></label>
+
+		{% if DATE%}
+		<input value="{{DATE}}" type="text" name="Date"  placeholder="DD/MM/YYYY" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required/>
+		{% else %}
 		<input value="{{DATE}}" type="Date" name="Date"  placeholder="DD/MM/YYYY" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required/>
+		{% endif %}
 		{% endif %}
 
 		<label for="slctParty" style="width:80px">Party</label><label for="slctParty"  style="width: 10px"><strong>:</strong></label>

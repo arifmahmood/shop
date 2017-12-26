@@ -201,10 +201,19 @@ tr:nth-child(even) {
 	<fieldset style="border: thin solid #000000; height: 310px; width: 275px; position: absolute; left:20px; top: 62px;">
 		<legend><strong>Head Info</strong></legend>
 		{% if SELECTED %}
+		<label for="txtMemo">Serial no</label><label for="txtMemo" style="width: 10px"><strong>:</strong></label>
+		<input type="text" readonly  value="{{SALE_OBJ.id}}" name="Serial_no" placeholder="Do not enter" style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
 		<label for="txtMemo">Memo No</label><label for="txtMemo" style="width: 10px"><strong>:</strong></label>
-		<input type="text" readonly value="{{SALE_OBJ.id}}" name="Memo_no" placeholder="Do not enter" style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+
+		<input type="text"  value="{{SALE_OBJ.given_memo_no}}" name="Memo_no" placeholder="" style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
 		<label for="Date" style="width: 80px">Date</label><label for="dtpSale" style="width: 10px"><strong>:</strong></label>
-		<input value="{{DATE}}" type="Date" name="Date"  placeholder="DD/MM/YYYY" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required/>
+		{% if DATE %}
+		<input value="{{DATE}}" type="text" name="Date"  placeholder="" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required/>
+		{% else %}
+
+		<input value="{{DATE}}" type="date" name="Date"  placeholder="" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required/>
+		{% endif %}
+
 		{% endif %}
 
 		<label for="slctParty" style="width:80px">Party</label><label for="slctParty"  style="width: 10px"><strong>:</strong></label>

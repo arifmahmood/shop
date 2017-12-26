@@ -1,3 +1,5 @@
+from time import gmtime, strftime
+
 from django.db.models.functions import Coalesce
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.http import HttpResponse
@@ -609,12 +611,37 @@ def sale_add_page_load(request):
     elif request.POST.get('Confirm_button'):
         c_id, c_name = request.POST.get('Select_party', '').split('-')
         customer = Customer.objects.filter(id=int(c_id)).get()
-        dd,mm,yy = request.POST.get('Date').split('/')
+
+        string_date = request.POST.get('Date')
+
+        dd=''
+        mm=''
+        yy=''
+        if '/' in string_date:
+            yy, mm, dd = string_date.split('/')
+        elif '-' in string_date:
+            yy, mm, dd = string_date.split('-')
+        else:
+            dd, mm, yy = strftime("%d-%m-%Y", gmtime())
+
+
+
+
+
+        date = yy+'-'+mm+'-'+dd
+
+
+
+
+
+
+
+
         date = yy+'-'+mm+'-'+dd
         obj = Memo(party=customer, date=date)
         obj.save()
 
-        dt = request.POST.get('Date')
+        dt = obj.date
 
 
         all_item = Item.objects.all
@@ -647,7 +674,7 @@ def sale_add_page_load(request):
 
         allitem = Item.objects.all
 
-        dt = objMemo.date.strftime("%d/%m/%Y")
+        dt = objMemo.date
         c = {'SALE_OBJ': objMemo,
              'ALLITEM': allitem,
              'TOTAL': total,
@@ -673,7 +700,7 @@ def sale_add_page_load(request):
         grand_total=(int(total)-int(discount))
         due=(int(total) - int(discount) - int(paid))
 
-        dt = objMemo.date.strftime("%d/%m/%Y")
+        dt = objMemo.date
 
 
         c = {'SALE_OBJ': objMemo,
@@ -706,7 +733,7 @@ def sale_add_page_load(request):
 
         all_item = Item.objects.all
 
-        dt = objMemo.date.strftime("%d/%m/%Y")
+        dt = objMemo.date
 
         c = {'SALE_OBJ': objMemo,
              'CURRENT_ITEM': item,
@@ -748,7 +775,7 @@ def sale_edit_delete(request):
         gt =int(total) - int(memo_obj.discount)
         due = gt - memo_obj.paid
 
-        dt=memo_obj.date.strftime("%d/%m/%Y")
+        dt=memo_obj.date
 
         customer = Customer.objects.all()
         item = Item.objects.all()
@@ -777,11 +804,11 @@ def sale_edit_delete(request):
 
         customer_id = request.POST.get('Party', '').split('-')
 
-        dd, mm, yy = request.POST.get('Date').split('/')
-        date_got = yy + '-' + mm + '-' + dd
+        # dd, mm, yy = strftime("%d-%m-%Y",request.POST.get('Date')).split('-')
+        # date_got = yy + '-' + mm + '-' + dd
 
         memo_obj.party = Customer.objects.get(id=int(customer_id[0]))
-        memo_obj.date = date_got
+        # memo_obj.date = date_got
         memo_obj.save()
 
         all_sale_obj = Memo.objects.all
@@ -1107,12 +1134,31 @@ def purchase_add_page_load(request):
     elif request.POST.get('Confirm_button'):
         c_id, c_name = request.POST.get('Select_party', '').split('-')
         customer = Supplier.objects.filter(id=int(c_id)).get()
-        dd,mm,yy = request.POST.get('Date').split('/')
+        given_memo_no = request.POST.get('Memo_no')
+        string_date = request.POST.get('Date')
+        dd=''
+        mm=''
+        yy=''
+
+        print(string_date)
+
+        if '/' in string_date:
+            yy, mm, dd = string_date.split('/')
+        elif '-' in string_date:
+            yy, mm, dd = string_date.split('-')
+        else:
+            dd, mm, yy = strftime("%d-%m-%Y", gmtime())
+
+
+
+
+
         date = yy+'-'+mm+'-'+dd
-        obj = PurchaseMemo(party=customer, date=date)
+        # print(date)
+        obj = PurchaseMemo(party=customer, date=date, given_memo_no= given_memo_no)
         obj.save()
 
-        dt = request.POST.get('Date')
+        dt = obj.date
 
 
         all_item = Item.objects.all
@@ -1126,7 +1172,7 @@ def purchase_add_page_load(request):
         return render_to_response('purchase_add.html', c)
 
     elif request.POST.get('Add_item_button'):
-        id = request.POST.get('Memo_no', '')
+        id = request.POST.get('Serial_no', '')
         objMemo =PurchaseMemo.objects.filter(id=int(id)).get()
 
         item_id, item_name, item_size = request.POST.get('Select_item', '').split('-')
@@ -1146,7 +1192,7 @@ def purchase_add_page_load(request):
 
         allitem = Item.objects.all
 
-        dt = objMemo.date.strftime("%d/%m/%Y")
+        dt = objMemo.date
         c = {'SALE_OBJ': objMemo,
              'ALLITEM': allitem,
              'TOTAL': total,
@@ -1160,7 +1206,7 @@ def purchase_add_page_load(request):
         return render_to_response('purchase_add.html', c)
 
     elif request.POST.get('Save_memo_button'):
-        id = request.POST.get('Memo_no', '')
+        id = request.POST.get('Serial_no', '')
         objMemo = PurchaseMemo.objects.filter(id=int(id)).get()
         objMemo.paid = request.POST.get('Paid')
         objMemo.discount = request.POST.get('Discount')
@@ -1172,7 +1218,7 @@ def purchase_add_page_load(request):
         grand_total=(int(total)-int(discount))
         due=(int(total) - int(discount) - int(paid))
 
-        dt = objMemo.date.strftime("%d/%m/%Y")
+        dt = objMemo.date
 
 
         c = {'SALE_OBJ': objMemo,
@@ -1195,8 +1241,8 @@ def purchase_add_page_load(request):
 
 
 
-    elif not request.POST.get('Memo_no', '')=='':
-        id = request.POST.get('Memo_no', '')
+    elif not request.POST.get('Serial_no', '')=='':
+        id = request.POST.get('Serial_no', '')
         objMemo = PurchaseMemo.objects.filter(id=int(id)).get()
         item_name, item_size = request.POST.get('Select_item', '').split('-')
         item = Item.objects.filter(name=item_name, size=item_size).get()
@@ -1205,7 +1251,7 @@ def purchase_add_page_load(request):
 
         all_item = Item.objects.all
 
-        dt = objMemo.date.strftime("%d/%m/%Y")
+        dt = objMemo.date
 
         c = {'SALE_OBJ': objMemo,
              'CURRENT_ITEM': item,
@@ -1268,7 +1314,7 @@ def purchase_edit_delete(request):
 
 
     elif request.POST.get('Save_head_button'):
-        id= request.POST.get('Memo_no')
+        id= request.POST.get('Serial_no')
         if id =='':
             return HttpResponse('error')
 
@@ -1310,7 +1356,7 @@ def purchase_edit_delete(request):
 
     elif request.POST.get('Add_item_button') or request.POST.get('Save_item_button'):
 
-        id = request.POST.get('Memo_no')
+        id = request.POST.get('Serial_no')
         objMemo = PurchaseMemo.objects.filter(id=int(id)).get()
 
         item_id= request.POST.get('Select_item', '').split('-')
@@ -1352,7 +1398,7 @@ def purchase_edit_delete(request):
 
 
     elif request.POST.get('Delete_item_button'):
-        id = request.POST.get('Memo_no')
+        id = request.POST.get('Serial_no')
         objMemo = PurchaseMemo.objects.filter(id=int(id)).get()
 
         item_id, item_name, item_size = request.POST.get('Select_item', '').split('-')
@@ -1393,7 +1439,7 @@ def purchase_edit_delete(request):
 
 
     elif request.POST.get('Save_all_button'):
-        id = request.POST.get('Memo_no')
+        id = request.POST.get('Serial_no')
 
         objMemo = PurchaseMemo.objects.filter(id=int(id)).get()
 
@@ -1461,14 +1507,14 @@ def purchase_edit_delete(request):
 
 
     elif request.POST.get('Delete_confirm_button'):
-        id = request.POST.get('Memo_no')
+        id = request.POST.get('Serial_no')
         PurchaseMemo.objects.filter(id=int(id)).delete()
 
         return HttpResponseRedirect('/purchase/purchase_edit_delete/')
 
 
     elif request.POST.get('Print_confirm_button'):
-        id = request.POST.get('Memo_no')
+        id = request.POST.get('Serial_no')
         # PRINT SHOUD BE DONE HERE
 
         return HttpResponseRedirect('/purchase/purchase_edit_delete/')
@@ -1481,7 +1527,7 @@ def purchase_edit_delete(request):
     else:
         if request.POST.get('Select_item'):
 
-            id = request.POST.get('Memo_no')
+            id = request.POST.get('Serial_no')
 
             objMemo = PurchaseMemo.objects.filter(id=int(id)).get()
 
@@ -1502,7 +1548,7 @@ def purchase_edit_delete(request):
                     # not new element
                     selected_sale_item = objMemo.purchase_item.filter(item=s_item).get()
 
-                    id = request.POST.get('Memo_no')
+                    id = request.POST.get('Serial_no')
                     memo_obj = PurchaseMemo.objects.get(id=int(id))
                     all_sale_obj = PurchaseMemo.objects.all
 
@@ -1537,7 +1583,7 @@ def purchase_edit_delete(request):
 
                     #new item
 
-                    id = request.POST.get('Memo_no')
+                    id = request.POST.get('Serial_no')
                     memo_obj = PurchaseMemo.objects.get(id=int(id))
                     all_sale_obj = PurchaseMemo.objects.all
 
