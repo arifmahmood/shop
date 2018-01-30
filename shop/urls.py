@@ -40,18 +40,25 @@ urlpatterns = [
     url(r'^sc/delete/$', views.show_sc_delete_page, name='sc_delete_page'),
     url(r'^sc/edit/$',views.show_sc_edit_page,name='sc_edit_page'),
 
-    #------------------ sale -----------------------
+    #-------------------------sale------------------------
     url(r'^sale/$',views.sale_page_load, name='sale_page'),
     url(r'^sale/sale_add/$',views.sale_add_page_load, name='sale_add_page'),
     url(r'^sale/sale_edit_delete/$',views.sale_edit_delete, name='sale_edit_delete'),
 
-    #------------------- purchase -------------------------
+    #----------------------purchase-----------------------
 
     url(r'^purchase/$',views.purchase_page_load, name='purchase_page'),
     url(r'^purchase/purchase_add/$',views.purchase_add_page_load, name='purchase_add_page'),
     url(r'^purchase/purchase_edit_delete/$',views.purchase_edit_delete, name='purchase_edit_delete'),
 
+    #----------------------sr---------------------------
+    url(r'^sr/$',views.showSrPage, name='purchase_page'),
+    url(r'^sr/add/$',views.showSrPage, name='purchase_page'),
 
+    #----------------------salesreturn---------------
+    url(r'^salesreturn/$', views.salesReturn, name='purchase_page'),
+    url(r'^ajax/getDetails/$', views.ajax, name='purchase_page'),
+    url(r'^ajax/getItem/$', views.getItem, name='purchase_page'),
 
 
     #------------------- report ----------------------

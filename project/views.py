@@ -2,12 +2,14 @@ from time import gmtime, strftime
 
 from django.db.models.functions import Coalesce
 from django.shortcuts import render_to_response, HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template.context_processors import csrf
 from django.contrib import auth
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import Item, Sr, Customer, Supplier, Memo, SaleItem, PurchaseItem , PurchaseMemo
 
-from django.db.models import Sum, Avg,Count
+from django.db.models import Sum, Avg, Count, Q
 
 from django.contrib.auth import logout
 from datetime import datetime
@@ -1742,9 +1744,75 @@ def report_stock_ledger(request):
     return render_to_response('report_item_list.html', c)
 
 
+def showSrPage(request):
+    c={}
+
+    if request.POST.get('addButton'):
+        srName = request.POST.get('srName', '')
+        srMobileNo = request.POST.get('srMobileNo', '')
+        srAddress = request.POST.get('srAddress','')
 
 
+        sr = Sr(name=srName, mobileNo=srMobileNo, address=srAddress)
+        sr.save()
+
+    elif request.POST.get('searchButton'):
+
+        srName = request.POST.get('srNameSearch', '')
+        srMobileNo = request.POST.get('srMobileNoSearch', '')
+        filteredSr = None
+        if srName is not '' and srMobileNo is not '':
+            filteredSr = Sr.objects.filter(Q(name__icontains=srName) | Q(mobileNo__icontains=srMobileNo))
+        elif srMobileNo is not '':
+            filteredSr = Sr.objects.filter(Q(mobileNo__icontains=srMobileNo))
+        elif srName is not '':
+            filteredSr = Sr.objects.filter(Q(name__icontains=srName))
+
+        c = { 'FILTERED_SR': filteredSr}
+        c.update(csrf(request))
+        return render_to_response('SR_ADD.html', c)
+
+    c.update(csrf(request))
+    return render_to_response('SR_ADD.html', c)
 
 
+def salesReturn(request):
+    c={}
 
+    #
+    # if request.POST.get('saveButton',''):
+    #
+    # elif request.POST.get('editButton',''):
+    #
+    # elif request.POST.get('deleteButton',''):
+    #
+    # elif request.POST.get('printButton',''):
+    #
+    # elif request.POST.get('addNewDetailsButton',''):
 
+    c = {'CUSTOMER': Customer.objects.all(), 'ITEMS':Item.objects.all()}
+    c.update(csrf(request))
+    return render_to_response('Sales_Return.html', c)
+
+@csrf_exempt
+def ajax(request):
+    id  =request.POST.get('id','')
+    customer = Customer.objects.get(id=int(id))
+    data = {
+        'isFound': True,
+        'address': customer.address,
+
+    }
+    return JsonResponse(data)
+
+@csrf_exempt
+def getItem(request):
+    id = request.POST.get('id', '')
+    item = Item.objects.get(id=int(id))
+    data = {
+        'isFound': True,
+        'size': item.size,
+        'saleRate':item.sale_rate
+
+    }
+    return JsonResponse(data)

@@ -23,6 +23,7 @@ class Item(models.Model):
 class Sr(models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=150)
+    mobileNo= models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
@@ -60,6 +61,18 @@ class SaleItem(models.Model):
 
 
 class Memo(models.Model):
+    date = models.DateField()
+    party = models.ForeignKey(Customer)
+    sale_item = models.ManyToManyField(SaleItem)
+    discount = models.DecimalField(max_digits=10, decimal_places=2,default=0, blank=True, null=True)
+    paid = models.DecimalField(max_digits=10, decimal_places=2,default=0, blank=True, null=True)
+
+    def get_total(self):
+        # type: () -> object
+        return sum(i.item_total() for i in self.sale_item.all())
+
+class ReturnMemo(models.Model):
+    customizeId= models.DecimalField(max_digits=10, decimal_places=2,default=0, blank=True, null=True)
     date = models.DateField()
     party = models.ForeignKey(Customer)
     sale_item = models.ManyToManyField(SaleItem)

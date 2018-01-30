@@ -184,18 +184,18 @@ tr:nth-child(even) {
 
 <form action="" method="post" style="border-radius:3px; width: 827px; height: 40px; top: 10px; position: absolute; background-color: #666699; left: 10px; bottom: 235px;">
 	<div class="auto-style1">
-		<strong>Item</strong></div>
+		<strong>আইটেম</strong></div>
 </form>
 
 <form action="/item/edit/" method="post" style= "border-radius: 3px; width: 500px; height: 501px; top: 60px; position: absolute; background-color: #FFFFFF; left: 10px;">{% csrf_token %}
 
 
 	<div id="layer2" style="position: absolute; width: 162px; height: 49px; z-index: 2; left: 9px; top: 5px; right: 409px;">
-		<button class="button" type="button"  onclick="location.href ='/home'" ><span>Home</span>
+		<button class="button" type="button"  onclick="location.href ='/home'" ><span>মূল পাতা</span>
 		</button>
 	</div>
 	<div id="layer1" style="position: absolute; width: 143px; height: 49px; z-index: 1; left: 669px; top: 5px">
-		<button class="button" type="button"  onclick="location.href ='/logout'" ><span>Log out</span>
+		<button class="button" type="button"  onclick="location.href ='/logout'" ><span>লগ আউট</span>
 		</button>
 
 	</div>
@@ -208,11 +208,11 @@ tr:nth-child(even) {
 	<div id="layer1" style="position: absolute; width: 152px; height: 51px; left: 83px; top: 340px">
 
 		{%if not EDIT %}
-		<input name="Edit_button" type="submit" value="Edit" class="button1"/>
+		<input name="Edit_button" type="submit" value="ইডিট" class="button1"/>
 		{% endif %}
 
 		{%if EDIT %}
-		<input name="Save_button" type="submit" value="Save" class="button1"/>
+		<input name="Save_button" type="submit" value="সেভ" class="button1"/>
 		{% endif %}
 
 
@@ -221,10 +221,10 @@ tr:nth-child(even) {
 
 	<fieldset style="border: thin solid #000000; height: 240px; width: 276px; position: absolute; left:20px; top: 62px;">
 
-		<legend><strong>Input Field</strong></legend>
+		<legend><strong>ইনপুট</strong></legend>
 
 		{%if not EDIT %}
-		<label for="txtId" style="width:50px">Id:</label>
+		<label for="txtId" style="width:50px">আইডি:</label>
 		<select name="Select_id" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom:2px; margin-bottom: 5px">
 			<option></option>
 			{% for i in Item.all %}
@@ -241,12 +241,12 @@ tr:nth-child(even) {
 
 		{%if EDIT %}
 
-		<label for="txtId">Id:</label><input type="text" value="{{obj.id}}" name="Id_value" readonly style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right">
+		<label for="txtId">আইডি:</label><input type="text" value="{{obj.id}}" name="Id_value" readonly style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right">
 
-		<label for="txtName">Name:</label><input type="text" value="{{obj.name}}" name="Name" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required>
-		<label for="txtSize">Size:</label><input type="text" value="{{obj.size}}"  name="Size" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required>
-		<label for="txtRateStock">Stock Rate:</label><input value="{{obj.stock_rate}}" type="text" name="Stock_rate" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right" required>
-		<label for="txtRateSale">Sale Rate:</label><input type="text" value = "{{obj.sale_rate}}"  name="Sale_rate"style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right" required>
+		<label for="txtName">নাম:</label><input type="text" value="{{obj.name}}" name="Name" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required>
+		<label for="txtSize">সাইজ:</label><input type="text" value="{{obj.size}}"  name="Size" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required>
+		<label for="txtRateStock">স্টক রেট:</label><input value="{{obj.stock_rate}}" type="text" name="Stock_rate" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right" required>
+		<label for="txtRateSale">সেল রেট:</label><input type="text" value = "{{obj.sale_rate}}"  name="Sale_rate"style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right" required>
 		{% endif %}
 	</fieldset>
 </form>
@@ -256,15 +256,15 @@ tr:nth-child(even) {
 	{% csrf_token %}
 
 	<fieldset style="border: thin solid #000000; height: 160px; width: 276px; position: absolute; left:20px; top: 62px;">
-		<legend><strong >Search Field</strong></legend>
-		<label for="searchType" style="width:50px">Attribute:</label><select name="stype" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom:2px; margin-bottom: 5px">
-		<option>ID</option>
-		<option>Name</option>
-		<option>Size</option>
-		<option>Show All</option>
+		<legend><strong >সার্চ</strong></legend>
+		<label for="searchType" style="width:50px">অ্যাট্রিবিউট:</label><select name="stype" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom:2px; margin-bottom: 5px">
+		<option value="ID">আইডি</option>
+		<option value="Name">নাম</option>
+		<option value="Size">সাইজ</option>
+		<option value="Show All">সব দেখাও</option>
 
 	</select>
-		<label for="value">Value:</label><input type="text" name="value" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+		<label for="value">ভ্যালু:</label><input type="text" name="value" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
 
 
 
@@ -278,7 +278,7 @@ tr:nth-child(even) {
 			</select>
 		 	-->
 		<div id="layer4" style="width: 162px; height: 51px; margin-left:55px; z-index: 1">
-			<input name="Search_button" type="submit"  value="Search" class="button1"/>
+			<input name="Search_button" type="submit"  value="সার্চ" class="button1"/>
 
 		</div>
 
@@ -288,11 +288,11 @@ tr:nth-child(even) {
 			<table>
 				<tbody>
 				<tr>
-					<th>Id</span></th>
-					<th>Name</span></th>
-					<th>Size</th>
-					<th>Stock rate</th>
-					<th>Sale rate</th>
+				    <th>আইডি</th>
+				    <th>নাম</th>
+				    <th>সাইজ</th>
+				    <th>স্টক রেট</th>
+				    <th>সেল রেট</th>
 				</tr>
 				</tbody>
 				<tbody>

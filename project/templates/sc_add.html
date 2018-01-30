@@ -195,7 +195,7 @@ tr:nth-child(even) {
 
 <form action="" method="post" style="border-radius:3px; width: 900px; height: 40px; top: 10px; position: absolute; background-color: #666699; left: 10px; bottom: 235px;">
 	<div class="auto-style1">
-		Add Supplier &amp; Customer</div>
+		সাপ্লাইয়ার ও কাস্টমার অ্যাড করুন</div>
 </form>
 
 <form action="/sc/add/" method="POST" style= "border-radius: 3px; width: 500px; height: 501px; top: 60px; position: absolute; background-color: #FFFFFF; left: 10px;">
@@ -203,37 +203,37 @@ tr:nth-child(even) {
 
 
 	<div id="layer2" style="position: absolute; width: 162px; height: 49px; z-index: 2; left: 9px; top: 5px; right: 409px;">
-		<button class="button" type="button"  onclick="location.href ='/home'" ><span>Home</span>
+		<button class="button" type="button"  onclick="location.href ='/home'" ><span>মূল পাতা</span>
 		</button>
 	</div>
 	<div id="layer1" style="position: absolute; width: 143px; height: 49px; z-index: 1; left: 669px; top: 5px">
-		<button class="button" type="button"  onclick="location.href ='/logout'" ><span>Log out</span>
+		<button class="button" type="button"  onclick="location.href ='/logout'" ><span>লগ আউট</span>
 		</button>
 
 	</div>
 
 	<div id="layer1" style="position: absolute; width: 162px; height: 51px; z-index: 1; left: 71px; top: 372px">
-		<input name="Add_button" type="submit" value="Add" class="button1"/>
+		<input name="Add_button" type="submit" value="অ্যাড" class="button1"/>
 
 	</div>
 
 	<fieldset style="border: thin solid #000000; height: 284px; width: 276px; position: absolute; left:20px; top: 62px;">
-		<legend><strong>Input Field</strong></legend>
+		<legend><strong>ইনপুট ফিল্ড</strong></legend>
 		<!--<label for="txtId">Id:</label><input type="text" name="txtId" style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"></input>
 
      -->
-		<label for="txtName">Name:</label><input type="text" name="Name" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required></input>
+		<label for="txtName">নাম :</label><input type="text" name="Name" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px" required></input>
 		<p class="AlignToTextArea" style="margin-bottom: 0; margin-top: 0">
-			<label for="txtaddress">Address:</label><textarea rows="4" name="Address" style= "width: 159px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; display: inline-block" required> </textarea>
+			<label for="txtaddress">ঠিকানা :</label><textarea rows="4" name="Address" style= "width: 159px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; display: inline-block" required> </textarea>
 		</p>
-		<label for="Mobile">Mobile No:</label><input type="text" name="Mobile_no" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align; left: "   required></input>
-		<label for="slctType" style="width:80px; margin-right: 15px">Type:</label>
+		<label for="Mobile">মোবাইল নং :</label><input type="text" name="Mobile_no" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align; left: "   required></input>
+		<label for="slctType" style="width:80px; margin-right: 15px">ধরন :</label>
 		<select name="Type" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
 
-			<option>Supplier</option>
-			<option>Customer</option>
+			<option value='Supplier'>সাপ্লাইয়ার</option>
+			<option value='Customer'>কাস্টমার</option>
 		</select>
-		<label for="slctSR" style="width:80px; margin-right: 15px">SR:</label>
+		<label for="slctSR" style="width:80px; margin-right: 15px">এসআর :</label>
 		<select name="Sr" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
 			<option></option>
 			{% for i in sr.all %}
@@ -249,15 +249,15 @@ tr:nth-child(even) {
 	{% csrf_token %}
 
 	<fieldset style="border: thin solid #000000; height: 160px; width: 276px; position: absolute; left:20px; top: 62px;">
-		<legend><strong >Search Field</strong></legend>
-		<label for="searchType" style="width:50px">Attribute:</label><select name="stype" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom:2px; margin-bottom: 5px">
+		<legend><strong >সার্চ ফিল্ড</strong></legend>
+		<label for="searchType" style="width:50px">অ্যাট্রিবিউট :</label><select name="stype" style="width: 140px; height: 30px; border-radius: 2px; background:#E8E8E1; padding-left: 5px; padding-right: 5px; padding-top: 2px; padding-bottom:2px; margin-bottom: 5px">
 
-		<option>Name</option>
-		<option>Mobile No</option>
-		<option>Show All</option>
+		<option value='Name'>নাম</option>
+		<option value='Mobile No'>মোবাইল নং</option>
+		<option value='Show All'>সব দেখুন</option>
 
 	</select>
-		<label for="value">Value:</label><input type="text" name="value" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+		<label for="value">ভ্যালু :</label><input type="text" name="value" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
 
 
 
@@ -271,7 +271,7 @@ tr:nth-child(even) {
 			</select>
 		 	-->
 		<div id="layer4" style="width: 162px; height: 51px; margin-left:55px; z-index: 1">
-			<input name="Search_button" type="submit"  value="Search" class="button1"/>
+			<input name="Search_button" type="submit"  value="সার্চ" class="button1"/>
 
 		</div>
 
@@ -281,11 +281,11 @@ tr:nth-child(even) {
 			<table>
 				<tbody>
 				<tr>
-					<th>Id</th>
-					<th>Name</th>
-					<th>Address</th>
-					<th>Mobile No.</th>
-					<th>SR</th>
+					<th>আইডি</th>
+					<th>নাম</th>
+					<th>ঠিকানা</th>
+					<th>মোবাইল নং</th>
+					<th>এসআর</th>
 				</tr>
 				</tbody>
 				<tbody>

@@ -269,7 +269,7 @@
     </style>
 
     <meta charset="utf-8">
-    <title>Log in form</title>
+    <title>লগ ইন ফর্ম</title>
 
 </head>
 <body>
@@ -278,14 +278,14 @@
 	<section id="content">
 		<form action="/login/auth/" style="left: 0px; top: 10px;  height: 330px" method="POST">
 			{% csrf_token %}
-			<h1>Login Form</h1>
+			<h1>লগইন ফর্ম</h1>
 			<div >
 				
 			</div>
 			<div>
 				<select name="Select1" id="usertype"> 
-				<option> User</option>
-				<option>Administrator</option>
+				<option value = "User"> ইউজার</option>
+				<option value= "Administrator">অ্যাডমিনিস্ট্রেটর</option>
 
 				</select>
 			</div>
@@ -296,7 +296,7 @@
 				<input type="password" placeholder="Password" name="password" required="" id="password" />
 			</div>
 			<div>
-				<input type="submit" value="Log in" />&nbsp;&nbsp;
+				<input type="submit" value="লগ ইন" />&nbsp;&nbsp;
 			</div>
 		</form><!-- form -->
 		<!-- button -->

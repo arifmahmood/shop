@@ -128,7 +128,7 @@ background: linear-gradient(yellow, #FFCC99);
 <form action="" method="post" style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; width: 580px; height: 40px; top: 30px; position: absolute; background-color: #666699;">
 
 	<div class="auto-style1">
-		<strong>Home</strong>
+		<strong>মূল পাতা</strong>
 	</div>
 </form>
 
@@ -136,38 +136,40 @@ background: linear-gradient(yellow, #FFCC99);
 	{% csrf_token %}
 	<div class="auto-style2">
 
-		<button class="button" type="button" onclick="location.href ='/logout'" style="vertical-align:middle"><span>Log out </span></button>
+		<button class="button" type="button" onclick="location.href ='/logout'" style="vertical-align:middle"><span>লগ আউট </span></button>
 	</div>
 
 	<div style="margin-top: 40px;float: top">
 		<select name="slctForm"  class="select" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-			<option value="">Select form</option>
-			<option value="/item/">Item </option>
-			<option value="/sc/">Supplier and Customer </option>
-			<!--
-            <option value="/sr/">SR </option>-->>
-			<option value="/purchase/"> Purchase</option>
+			<option value="">ফর্ম বেছে নিন</option>
+			<option value="/item/">আইটেম </option>
+			<option value="/sc/">সাপ্লাইয়ার এবং কাস্টমার </option>
+            <option value="/sr/">SR </option>
+			<option value="/purchase/"> ক্রয়</option>
 
-			<option value="/sale/"> Sale</option>
+			<option value="/sale/"> বিক্রয়</option>
 			<!--<option value="/Payment/"> Payment</option>
             <option value="/extradiscount/">Extra Discount</option>
-            <option value="/purchasereturn/">Purchase Return</option>
-            <option value="/salesreturn/"> Sales return</option>
-            <option value="/damage/">Damage</option>
+            <option value="/purchasereturn/">Purchase Return</option> -->
+			<option value="/salesreturn/"> Sales return</option>
+
+			<!--
+			<option value="/damage/">Damage</option>
             <option value="/Misc/">Misc</option>
             <option value="/deliveryman/">Delivery Man</option> -->
 			<option value=""></option>
 		</select>
 
-
-		<select name="slctReport" class="select" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" >
-			<option>Go to Reports</option>
-			<option value="/report_item_list/">Item List</option>
-			<option value="/report_stock_ledger/">Stcok ledger</option>
+		<select name="slctReport" class="select" oncha
+nge="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" >
+			<option>রিপোর্ট বেছে নিন</option>
+			<option value="/report_item_list/">আইটেম লিস্ট</option>
+			<option value="/report_stock_ledger/">স্টক লেজার</option>
 		</select>
 
-		<input name="btnUCont" type="button" onclick="location.href ='/admin/auth/user'" value="User Control" class="button1"  />
-	</div>
+		<input name="btnUCont" type="button" onclick="location.href ='/admin/auth/user'" 
+            value="ইউজার কন্ট্রোল" class="button1"/>
+    </div>
 </form>
 
 </body>

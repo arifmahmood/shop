@@ -1,0 +1,375 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<style>
+
+label{
+display:inline-block;
+width:80px;
+text-align:left;
+}
+
+input{
+
+}
+
+fieldset{
+border:none;
+margin:0px auto;
+}
+
+.button1 {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: #f4511e;
+  background: linear-gradient(#3399ff, #79bcFF);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  height: 35px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button1 span {
+  cursor:pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: black;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover{
+background: linear-gradient(#79bcFF, #3399ff);
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.button1:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.button1 {
+	display: block 
+}
+.button {
+  display: inline-block;
+  border-radius: 15px;
+  background-color: #f4511e;
+  background: linear-gradient(#FFCC99, yellow);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  width: 125px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor:pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  color: black;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover{
+background: linear-gradient(yellow, #FFCC99);
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.auto-style1 {
+	text-align: center;
+	font-size: x-large;
+	color: #FFFFFF;
+	padding: 5px;
+}
+
+.select{
+	height: 40px;
+	width: 175px;
+	border-radius:2px;
+	margin-left: 10px; float:left;
+	background:#E8E8E1;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    top: 280px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.AlignToTextArea * {
+  vertical-align: middle;
+}
+
+.auto-style2 {
+	text-align: center;
+}
+.auto-style3 {
+	text-align: right;
+}
+
+</style>
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    function getItemDetails(num) {
+        $.ajax({
+        url: '/ajax/getItem/',
+        type: "POST",
+        data: {
+          'id': num
+        },
+        dataType: 'json',
+        success: function (data) {
+
+            if(data.isFound)
+            {
+             $("#itemSize").val(data.size);
+             $("#itemSaleRate").val(data.saleRate);
+            }
+            else
+            {
+
+            }
+        }
+      });
+    }
+
+    function getDetails(num) {
+        $.ajax({
+        url: '/ajax/getDetails/',
+        type: "POST",
+        data: {
+          'id': num
+        },
+        dataType: 'json',
+        success: function (data) {
+
+            if(data.isFound)
+            {
+             $("#address").val(data.address);
+            }
+            else
+            {
+
+            }
+        }
+      });
+    }
+
+    </script>
+</head>
+
+<body style="background-color: #E4E4E0">
+
+<form action="" method="post" style="border-radius:3px; width: 1100px; height: 40px; top: 10px; position: absolute; background-color: #666699; left: 10px;">
+	<div class="auto-style1">
+		<strong>Add Sale Return Entry</strong></div>
+</form>
+
+<form action="/salesreturn/" method="post" style="border-radius:3px; width: 1100px; height: 571px; top: 60px; position: absolute; background-color: #FFFFFF; left: 10px;">
+	{% csrf_token %}
+		<div id="layer1" style="position: absolute; width: 162px; height: 49px; z-index: 2; left: 36px; top: 5px; right: 902px;">
+			<button class="button" type="submit" formaction="/home/"><span>মুল পাতা</span>
+			</button>
+		</div>
+		<div id="layer2" style="position: absolute; width: 143px; height: 49px; z-index: 1; left: 934px; top: 5px">
+			<button class="button" type="submit" formaction="/logout/"><span>লগ আউট</span>
+			</button>
+		</div>
+		
+		<div id="layer3" style="position: absolute; width: 157px; height: 51px; z-index: 1; left: 502px; top: 5px; right: 441px;">
+			<input name="addNewDetailsButton" type="button" value="নতুন ডিটেইল" class="button1" style="width: 150px"/>
+		</div>
+		
+		<div id="layer4" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 675px; top: 4px; right: 335px;">
+			<input name="saveButton" type="button" value="সেভ" class="button1" style="width: 77px"/>
+		</div>
+		
+		<div id="layer5" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 900px; top: 311px; right: 109px;">
+			<input name="editButton" type="button" value="এডিট" class="button1" style="width: 77px"/>
+		</div>
+		
+		<div id="layer6" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 991px; top: 311px; right: 18px;">
+			<input name="deleteButton" type="button" value="ডিলিট" class="button1" style="width: 77px"/>
+		</div>
+
+		<div id="layer7" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 809px; top: 311px; right: 200px;">
+			<input name="printButton" type="button" value="প্রিন্ট" class="button1" style="width: 77px"/>
+		</div>
+
+		
+		<div id="layer8" style="position: absolute; width: 153px; height: 51px; z-index: 1; left: 334px; top: 5px">
+			<input name="buttonNewMemoButton" onclick="myFunction()" type="submit" value="নতুন মেমো" class="button1" style="width: 146px"/>
+		</div>
+		
+	<fieldset style="border: thin solid #000000; height: 246px; width: 275px; position: absolute; left:20px; top: 62px;">
+			<legend><strong>Head Info</strong></legend>
+			<label for="dtpSale" style="width: 80px">তারিখ</label><label for="dtpSale" style="width: 10px"><strong>:</strong></label><input type="Date" name="dtpSale" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px"/>
+			<label for="txtMemo">মেমো নং</label><label for="txtMemo" style="width: 10px"><strong>:</strong></label><input type="text" id="memoId" name="memoId" style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
+			<label for="slctParty" style="width:80px">পার্টি</label><label for="slctParty" style="width: 10px"><strong>:</strong></label><select name="slctParty" style="width: 180px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+				{% for customer in CUSTOMER.all %}
+                <option onclick="getDetails({{customer.id}})" value="{{customer.id}}">{{customer.name}}</option>
+                {% endfor %}
+			</select>
+			<p class="AlignToTextArea" style="margin-bottom: 0; margin-top: 0">
+			<label for="txtaddress" style="width: 80px">ঠিকানা</label><label for="txtaddress" style="width: 10px"><strong>:</strong></label><textarea rows="4" id="address" name="address" style= "width: 166px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; display: inline-block"> </textarea>
+			</p>
+			
+	
+	<fieldset/>
+
+	
+	<fieldset style="border: thin solid #000000; height: 246px; width: 279px; position: absolute; left:327px; top: 0px;">
+			<legend><strong>Detail</strong></legend> 
+			<label for="slctItem">পণ্য</label><label for="slctItem" style="width: 10px"><strong>:</strong></label><select name="slctItem" style="width: 180px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+				{% for item in ITEMS.all %}
+                <option onclick="getItemDetails({{item.id}})" value="{{item.id}}">{{item.name}}</option>
+                {% endfor %}
+			</select>
+			<label for="slctSize">সাইজ</label><label for="slctSize" style="width: 10px"><strong>:</strong></label><input name="itemSize" id="itemSize" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+
+			</input>
+			<label for="txtUnit">পরিমান</label><label for="txtUnit" style="width: 10px"><strong>:</strong></label><input type="number" name="unit" id="unit" onchange="function(this.value)" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right; font-family: SutonnyMJ"/>
+		<script>
+            function( num)
+            {
+
+            }
+        </script>
+        <label for="txtFree">ফ্রী</label><label for="txtFree" style="width: 10px"><strong>:</strong></label><input type="number" name="txtFree" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right; font-family: SutonnyMJ"/>
+			<label for="txtRate">দর</label><label for="txtRate" style="width: 10px"><strong>:</strong></label><input type="number" name="itemSaleRate" id="itemSaleRate" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right; font-family: SutonnyMJ"/>
+			<label for="txtTotal">মোট</label><label for="txtTotal" style="width: 10px"><strong>:</strong></label><input type="number" name="txtTotal" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right; font-family: SutonnyMJ"/>
+	</fieldset>
+	
+	<fieldset style="border: thin solid #000000; height: 206px; width: 279px; position: absolute; left:661px; top: 0px;">
+			<legend><strong>Aggregate</strong></legend> 
+
+			<label for="txtTotal">মোট</label><label for="txtTotal" style="width: 10px"><strong>:</strong></label><input type="number" name="txtUnit" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right; font-family: SutonnyMJ"/>
+			<label for="txtDiscount">ছাড়</label><label for="txtDiscount" style="width: 10px"><strong>:</strong></label><input type="number" name="txtFree" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right; font-family: SutonnyMJ"/>
+			<label for="txtGTotal">সর্বমোট</label><label for="txtGTotal" style="width: 10px"><strong>:</strong></label><input type="number" name="txtRate" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right; font-family: SutonnyMJ"/>
+	</fieldset>
+	
+			<table style="position: absolute; height: 20px;  left: 9px; width:900px; overflow: auto; top: 320px; table-layout: fixed;" class="Table">
+			  <tr>
+			    <th class="auto-style2">পণ্যের নাম</th>
+			    <th class="auto-style2">সাইজ</th>
+			    <th class="auto-style2">পরিমান</th>
+			    <th class="auto-style2">ফ্রী</th>
+			    <th class="auto-style2">দর</th>
+			    <th class="auto-style2">আইটেম টোটাল</th>
+			  </tr>
+			 </table>
+	
+		<div style="position: absolute;  left: 9px; width:917px; top: 350px; overflow:auto; height: 150px;">
+			<table style="; overflow: auto; table-layout: fixed;" class="Table">
+			  <tr>
+			    <td>Asian Paint</td>
+			    <td>5 Ltr</td>
+			    <td class="auto-style3">1</td>
+			    <td class="auto-style3">0</td>
+			    <td class="auto-style3">1650</td>
+			    <td class="auto-style3">1650</td>
+			  </tr>
+			  <tr>
+			    <td style="height: 27px">Asian Paint</td>
+			    <td style="height: 27px">1 Ltr</td>
+			    <td class="auto-style3" style="height: 27px">2</td>
+			    <td class="auto-style3" style="height: 27px">0</td>
+			    <td class="auto-style3" style="height: 27px">350</td>
+			    <td class="auto-style3" style="height: 27px">700</td>
+			  </tr>
+			  <tr>
+			    <td>Roxy Paint</td>
+			    <td>1 Ltr</td>
+			    <td class="auto-style3">6</td>
+			    <td class="auto-style3">1</td>
+			    <td class="auto-style3">350</td>
+			    <td class="auto-style3">2100</td>
+			  </tr>
+			  <tr>
+			    <td>Roxy Paint</td>
+			    <td>5 Ltr</td>
+			    <td class="auto-style3">1</td>
+			    <td class="auto-style3">0</td>
+			    <td class="auto-style3">1600</td>
+			    <td class="auto-style3">1600</td>
+			  </tr>
+			  <tr>
+			    <td>Glue</td>
+			    <td>1 Ltr</td>
+			    <td class="auto-style3">2</td>
+			    <td class="auto-style3">0</td>
+			    <td class="auto-style3">200</td>
+			    <td class="auto-style3">400</td>
+			  </tr>
+			  </table>
+		</div>
+		
+		<fieldset style="border: thin solid #000000; height: 57px; width: 383px; position: absolute; left:661px; top: 230px;">
+			<legend><strong>Select Memo to View, Print, Edit &amp; Delete</strong></legend>
+				<select name="slctMemo" style="width: 103px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+				<option value="">মেমো নং</option>
+				<option>376</option>
+				<option>375</option>
+				<option>374</option>
+				</select>
+		</fieldset>
+		
+	</form>
+
+</body>
+
+</html>

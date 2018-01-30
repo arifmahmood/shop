@@ -168,35 +168,35 @@ tr:nth-child(even) {
 
 <form action="" method="post" style="border-radius:3px; width: 1100px; height: 40px; top: 10px; position: absolute; background-color: #666699; left: 10px;">
 	<div class="auto-style1">
-		<strong>Purchase Edit/ Delete</strong></div>
+		<strong>ক্রয় এন্ট্রি এডিট/ডিলিট</strong></div>
 </form>
 
 <form action="/purchase/purchase_edit_delete/" oninput="GrandTotal.value=parseInt(Total.value)-parseInt(Discount.value);Due.value= parseInt(GrandTotal.value)-parseInt(Paid.value);ItemTotal.value =( parseInt(unit.value)-parseInt(free.value))* parseInt(sale_rate.value);" method="post" style="border-radius:3px; width: 1100px; height: 571px; top: 60px; position: absolute; background-color: #FFFFFF; left: 10px;">
 	{% csrf_token %}
 	<div id="layer2" style="position: absolute; width: 162px; height: 49px; z-index: 2; left: 36px; top: 5px; right: 902px;">
-		<button class="button" type="button"  onclick="location.href ='/home'" ><span>Home</span>
+		<button class="button" type="button"  onclick="location.href ='/home'" ><span>মূল পাতা</span>
 		</button>
 	</div>
 	<div id="layer1" style="position: absolute; width: 143px; height: 49px; z-index: 1; left: 934px; top: 5px">
-		<button class="button" type="button"  onclick="location.href ='/logout'" ><span>Log out</span>
+		<button class="button" type="button"  onclick="location.href ='/logout'" ><span>লগ আউট</span>
 		</button>
 	</div>
 
 	{% if PRINT %}
 	<div id="layer1" style="position: absolute; width: 157px; height: 51px; z-index: 1; left: 502px; top: 5px; right: 441px;">
-		<input name="Print_confirm_button" type="submit" value="Confirm Print" class="button1" style="width: 150px"/>
+		<input name="Print_confirm_button" type="submit" value="প্রিন্ট কনফার্ম করুন" class="button1" style="width: 150px"/>
 	</div>
 	{% endif %}
 
 	{% if DELETE %}
 	<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 675px; top: 4px; right: 335px;">
-		<input name="Delete_confirm_button" type="submit" value="Confirm Delete" class="button1" style="width: 170px"/>
+		<input name="Delete_confirm_button" type="submit" value="ডিলিট কনফার্ম করুন" class="button1" style="width: 170px"/>
 	</div>
 	{% endif %}
 
 	{% if EDIT %}
 	<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 400px; top: 4px; right: 335px;">
-		<input name="Save_all_button" type="submit" value="Save All" class="button1" style="width: 77px"/>
+		<input name="Save_all_button" type="submit" value="সব সেভ করুন" class="button1" style="width: 77px"/>
 	</div>
 	{% endif %}
 
@@ -209,7 +209,7 @@ tr:nth-child(even) {
 
 	{% if SAVE %}
 	<div id="layer1" style="position: absolute; width: 153px; height: 51px; z-index: 1; left: 334px; top: 5px">
-		<input name="Save_item_button"  type="submit" value="Save item" class="button1" style="width: 146px"/>
+		<input name="Save_item_button"  type="submit" value="পণ্য সেভ করুন" class="button1" style="width: 146px"/>
 
 	</div>
 	{% endif  %}
@@ -217,13 +217,13 @@ tr:nth-child(even) {
 	{% if SALE_OBJ %}
 
 	<fieldset style="border: thin solid #000000; height: 300px; width: 275px; position: absolute; left:20px; top: 62px;">
-		<legend><strong>Head Info</strong></legend>
+		<legend><strong>হেড তথ্য</strong></legend>
 
-		<label for="txtMemo">Memo No</label><label for="txtMemo" style="width: 10px"><strong>:</strong></label>
+		<label for="txtMemo">মেমো নং</label><label for="txtMemo" style="width: 10px"><strong>:</strong></label>
 		<input type="text" value="{{SALE_OBJ.id}}" readonly  name="Memo_no" style= "width: 100px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
-		<label for="dtpSale" style="width: 80px">Date</label><label for="dtpSale" style="width: 10px"><strong>:</strong></label>
+		<label for="dtpSale" style="width: 80px">তারিখ</label><label for="dtpSale" style="width: 10px"><strong>:</strong></label>
 		<input type="Date" value="{{DATE}}" name="Date" style= "width: 140px; height: 20px; border-radius: 3px; background:#E8E8E1; padding: 5px; margin-bottom: 5px"/>
-		<label for="slctParty" style="width:80px">Party</label><label for="slctParty" style="width: 10px"><strong>:</strong></label>
+		<label for="slctParty" style="width:80px">পার্টি</label><label for="slctParty" style="width: 10px"><strong>:</strong></label>
 		<select  name="Party" style="width: 180px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
 			{% if SALE_OBJ.id %}
 			<option>{{SALE_OBJ.party.id}}-{{SALE_OBJ.party.name}}</option>
@@ -244,7 +244,7 @@ tr:nth-child(even) {
             <option>Moksed</option>
         </select>-->
 		<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 190px; top: 250px; right: 200px;">
-			<input name="Save_head_button" type="submit" value="Save Head" class="button1" style="width: 95px"/>
+			<input name="Save_head_button" type="submit" value="হেড সেভ করুন" class="button1" style="width: 95px"/>
 		</div>
 
 
@@ -256,8 +256,8 @@ tr:nth-child(even) {
 
 		{% if EDIT %}
 		<fieldset style="border: thin solid #000000; height: 270px; width: 279px; position: absolute; left:327px; top: 0px;">
-			<legend><strong>Detail</strong></legend>
-			<label for="slctItem">Item/Size</label><label for="slctItem" style="width: 10px"><strong>:</strong></label><select name="Select_item" onchange="this.form.submit()" style="width: 180px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
+			<legend><strong>ডিটেইল</strong></legend>
+			<label for="slctItem"আইটেম/সাইজ</label><label for="slctItem" style="width: 10px"><strong>:</strong></label><select name="Select_item" onchange="this.form.submit()" style="width: 180px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
 
 			<option>{{CURRENT_ITEM.id}}-{{CURRENT_ITEM.name}}-{{CURRENT_ITEM.size}}</option>
 			{% for i in SALE_OBJ.purchase_item.all %}
@@ -269,30 +269,30 @@ tr:nth-child(even) {
 		</select>
 
 			{% if OLD or NEW %}
-			<label for="txtUnit">Unit</label><label for="txtUnit" style="width: 10px"><strong>:</strong></label>
+			<label for="txtUnit">পরিমান</label><label for="txtUnit" style="width: 10px"><strong>:</strong></label>
 			<input type="number" value="{{SALE_ITEM.quantity}}" name="Unit" id="unit" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right" required/>
-			<label for="txtFree">Free</label><label for="txtFree" style="width: 10px"><strong>:</strong></label>
+			<label for="txtFree">ফ্রী</label><label for="txtFree" style="width: 10px"><strong>:</strong></label>
 			<input type="number" value="{{SALE_ITEM.free}}" name="Free" id="free" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right" required/>
-			<label for="txtRate">Rate</label><label for="txtRate" style="width: 10px"><strong>:</strong></label>
+			<label for="txtRate">দর</label><label for="txtRate" style="width: 10px"><strong>:</strong></label>
 			<input type="number" value="{{CURRENT_ITEM.sale_rate}}" name="Rate" id="sale_rate" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
-			<label for="txtTotal">Item Total</label><label for="txtTotal" style="width: 10px"><strong>:</strong></label>
+			<label for="txtTotal">আইটেম টোটাল</label><label for="txtTotal" style="width: 10px"><strong>:</strong></label>
 			<input type="number" value="{{SALE_ITEM.item_total}}" name="ItemTotal" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right">
 			{% endif %}
 
 			{% if OLD %}
 			<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 0px; top: 220px; right: 200px;">
-				<input name="Delete_item_button" type="submit" value="Delete" class="button1" style="width: 77px"/>
+				<input name="Delete_item_button" type="submit" value="ডিলিট" class="button1" style="width: 77px"/>
 			</div>
 
 
 			<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 100px; top: 220px; right: 200px;">
-				<input name="Save_item_button" type="submit" value="Save" class="button1" style="width: 77px"/>
+				<input name="Save_item_button" type="submit" value="সেভ" class="button1" style="width: 77px"/>
 			</div>
 			{% endif %}
 
 			{% if  NEW %}
 			<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; left: 200px; top: 220px; right: 200px;">
-				<input name="Add_item_button" type="submit" value="Add" class="button1" style="width: 77px"/>
+				<input name="Add_item_button" type="submit" value="অ্যাড" class="button1" style="width: 77px"/>
 			</div>
 			{% endif %}
 
@@ -301,18 +301,18 @@ tr:nth-child(even) {
 		{% endif %}
 
 		<fieldset style="border: thin solid #000000; height: 206px; width: 279px; position: absolute; left:661px; top: 0px;">
-			<legend><strong>Aggregate</strong></legend>
+			<legend><strong>অ্যাগ্রেগেট</strong></legend>
 
 
-			<label for="txtTotal">Total</label><label for="txtTotal" style="width: 10px"><strong>:</strong></label>
+			<label for="txtTotal">মোট</label><label for="txtTotal" style="width: 10px"><strong>:</strong></label>
 			<input type="number" value="{{TOTAL}}" id="Total" readonly name="Total" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
-			<label for="txtDiscount">Discount</label><label for="txtDiscount" style="width: 10px"><strong>:</strong></label>
+			<label for="txtDiscount">ছাড়</label><label for="txtDiscount" style="width: 10px"><strong>:</strong></label>
 			<input type="number" id="Discount" value="{{SALE_OBJ.discount}}" name="Discount" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
-			<label for="txtGTotal">Grand Total</label><label for="txtGTotal" style="width: 10px"><strong>:</strong></label>
+			<label for="txtGTotal">সর্বমোট</label><label for="txtGTotal" style="width: 10px"><strong>:</strong></label>
 			<input type="number" value="{{GT}}" name="GrandTotal" id="GrandTotal"  radonly style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
-			<label for="txtPaid">Paid</label><label for="txtPaid" style="width: 10px"><strong>:</strong></label>
+			<label for="txtPaid">পরিশোধ</label><label for="txtPaid" style="width: 10px"><strong>:</strong></label>
 			<input type="number" name="Paid" id="Paid" value="{{SALE_OBJ.paid}}" style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
-			<label for="txtDue">Due</label><label for="txtDue" style="width: 10px"><strong>:</strong></label>
+			<label for="txtDue">বাকী</label><label for="txtDue" style="width: 10px"><strong>:</strong></label>
 			<input type="number" name="Due" value="{{DUE}}" readonly style="width: 170px; height: 20px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px; text-align: right"/>
 
 
@@ -320,12 +320,12 @@ tr:nth-child(even) {
 		{% endif %}
 		<table style="position: absolute; height: 20px;  left: 9px; width:900px; overflow: auto; top: 320px; table-layout: fixed;" class="Table">
 			<tr>
-				<th class="auto-style2">Item Name</th>
-				<th class="auto-style2">Size</th>
-				<th class="auto-style2">Unit</th>
-				<th class="auto-style2">Free</th>
-				<th class="auto-style2">Rate</th>
-				<th class="auto-style2">Item Total</th>
+				<th class="auto-style2">পণ্যের নাম</th>
+				<th class="auto-style2">সাইজ</th>
+				<th class="auto-style2">পরিমান</th>
+				<th class="auto-style2">ফ্রী</th>
+				<th class="auto-style2">দর</th>
+				<th class="auto-style2">আইটেম টোটাল</th>
 			</tr>
 		</table>
 
@@ -346,26 +346,26 @@ tr:nth-child(even) {
 		</div>
 
 		<fieldset style="border: thin solid #000000; height: 57px; width: 383px; position: absolute; left:661px; top: 230px;">
-			<legend><strong>Select Memo to View, Print, Edit &amp; Delete</strong></legend>
+			<legend><strong>দেখা, প্রিন্ট, এডিট এবং ডিলিট করার জন্যে মেমো সিলেক্ট করুন</strong></legend>
 			<select name="Select_memo" style="width: 103px; height: 35px; border-radius: 2px; background:#E8E8E1; padding: 5px; margin-bottom: 5px">
-				<option value="null">Memo No</option>
+				<option value="null">মেমো নং</option>
 				{% for  i in ALL_SALE_OBJ.all %}
 				<option>{{i.id}}</option>
 				{% endfor %}
 			</select>
 
 			<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; top: 0px; right: 109px;">
-				<input name="Edit_button" type="submit" value="Edit" class="button1" style="width: 77px"/>
+				<input name="Edit_button" type="submit" value="এডিট" class="button1" style="width: 77px"/>
 			</div>
 
 
 
 			<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; top: 0px; right: 18px;">
-				<input name="Delete_button" type="submit" value="Delete" class="button1" style="width: 77px"/>
+				<input name="Delete_button" type="submit" value="ডিলিট" class="button1" style="width: 77px"/>
 			</div>
 
 			<div id="layer1" style="position: absolute; width: 90px; height: 51px; z-index: 1; top: 0px; right: 200px;">
-				<input name="Print_button" type="submit" value="Print" class="button1" style="width: 77px"/>
+				<input name="Print_button" type="submit" value="প্রিন্ট" class="button1" style="width: 77px"/>
 			</div>
 		</fieldset>
 
